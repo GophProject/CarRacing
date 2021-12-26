@@ -70,22 +70,22 @@
             // lblGameOver
             // 
             this.lblGameOver.AutoSize = true;
-            this.lblGameOver.Font = new System.Drawing.Font("Cooper Black", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGameOver.ForeColor = System.Drawing.Color.Red;
             this.lblGameOver.Location = new System.Drawing.Point(74, 235);
             this.lblGameOver.Name = "lblGameOver";
-            this.lblGameOver.Size = new System.Drawing.Size(243, 46);
+            this.lblGameOver.Size = new System.Drawing.Size(224, 46);
             this.lblGameOver.TabIndex = 9;
             this.lblGameOver.Text = "Game Over";
             // 
             // lblCoins
             // 
             this.lblCoins.AutoSize = true;
-            this.lblCoins.Font = new System.Drawing.Font("Cooper Black", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCoins.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCoins.ForeColor = System.Drawing.Color.Yellow;
             this.lblCoins.Location = new System.Drawing.Point(23, 9);
             this.lblCoins.Name = "lblCoins";
-            this.lblCoins.Size = new System.Drawing.Size(112, 25);
+            this.lblCoins.Size = new System.Drawing.Size(105, 26);
             this.lblCoins.TabIndex = 9;
             this.lblCoins.Text = "Coins = 0";
             // 
@@ -252,6 +252,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Car Race";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.Coin2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Enemy3)).EndInit();

@@ -65,7 +65,23 @@ namespace CarRacing
 
         void gameover_actions()
         {
-            
+            gameTimer.Stop();
+            lblGameOver.Visible = true;
+            Car.Image = Properties.Resources.explosion;
+
+            DialogResult result = MessageBox.Show(
+                "Хочешь сыграть еще раз?",
+                "Ты проиграл",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+            if(result == DialogResult.Yes)
+            {
+                init_game();
+            }
+            else
+            {
+                Close();
+            }
         }
 
         void is_gameover() 
@@ -75,7 +91,29 @@ namespace CarRacing
 
         void is_get_coins()
         {
-            
+            int x;
+            for(int i = 0; i < coins.Length; i++)
+            {
+                if(Car.Bounds.IntersectsWith(coins[i].Bounds))
+                {
+                    collectedCoins++;
+                    x = random.Next(pbBoundLeft.Right, pbBoundRight.Left - coins[i].Width);
+                    coins[i].Location = new Point(x, -coins[i].Height);
+                }
+            }
+            lblCoins.Text = "Coins = " + collectedCoins;
+        }
+
+        bool check_intersections()
+        {
+            for(int i = 0; i < enemys.Length; i++)
+            {
+                if(Car.Bounds.IntersectsWith (enemys[i].Bounds))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         void move_enemys()
@@ -131,11 +169,50 @@ namespace CarRacing
             move_enemys();
             move_coins();
             move_lines();
+            is_get_coins();
+            isGameOver = check_intersections();
+            if(isGameOver)
+            {
+                gameover_actions();
+            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            
+            if (!isGameOver)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.Left:
+                        if (Car.Left > pbBoundLeft.Right)
+                        {
+                            Car.Left -= carTurnSpeed;
+                        }
+                        break;
+                    case Keys.Right:
+                        if (Car.Right < pbBoundRight.Left)
+                        {
+                            Car.Left += carTurnSpeed;
+                        }
+                        break;
+                    case Keys.Up:
+                        if (gameSpeed < 23)
+                        {
+                            gameSpeed++;
+                        }
+                        break;
+                    case Keys.Down:
+                        if (gameSpeed > 3)
+                        {
+                            gameSpeed--;
+                        }
+                        break;
+                }
+            }
+        }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
